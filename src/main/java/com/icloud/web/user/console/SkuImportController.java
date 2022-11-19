@@ -2,6 +2,7 @@ package com.icloud.web.user.console;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class SkuImportController extends BaseController<SkuImport> {
 		JSONObject resultObj = new JSONObject();
 		File temFile;
 			try {
-				temFile = File.createTempFile("temp", "."+extension);
+				temFile = Files.createTempFile("temp","." + extension).toFile();
 				file.transferTo(temFile);
 				try {
 					int count = skuImportService.importSku(temFile);
